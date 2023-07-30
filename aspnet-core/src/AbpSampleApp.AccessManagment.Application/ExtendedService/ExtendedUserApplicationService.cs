@@ -1,5 +1,6 @@
 ﻿using Abp;
 using AbpSampleApp.AccessManagment.AggregateRoots;
+using AbpSampleApp.AccessManagment.EntityFrameworkCore.Repository;
 using AutoMapper.Internal.Mappers;
 using Microsoft.Extensions.Options;
 using System;
@@ -25,7 +26,7 @@ namespace AbpSampleApp.AccessManagment.ExtendedService
       
         public MyIdentityUserAppService(
             IdentityUserManager userManager,
-            IIdentityUserRepository userRepository,
+            IMyIdentityUserRepository userRepository,
             IIdentityRoleRepository roleRepository
         ) : base(
             userManager,
@@ -37,17 +38,17 @@ namespace AbpSampleApp.AccessManagment.ExtendedService
             UserRepository = userRepository;
         }
 
-        public IIdentityUserRepository UserRepository { get; private set; }
+        public IMyIdentityUserRepository UserRepository { get; private set; }
 
         public async Task<List<IdentityUser>> FindByDateRange(DateTime from, DateTime to)
         {
-            List<IdentityUser> users =  await UserRepository.GetListAsync(filter: "CreationTime>=" + from.Date + " and CreationTime<=" + to.Date );
+            List<IdentityUser> users =  await UserRepository.f.GetListAsync(filter: "CreationTime>=" + from.Date + " and CreationTime<=" + to.Date );
             return users;
         }
 
         public async Task<List<IdentityUser>> FindByName(string name)
         {
-            List<IdentityUser> users = await UserRepository.GetListAsync(filter: "UserName=" + name);
+            List<IdentityUser> users = await UserRepository.FindByCreationDateRange("");
             return users;
         }
 

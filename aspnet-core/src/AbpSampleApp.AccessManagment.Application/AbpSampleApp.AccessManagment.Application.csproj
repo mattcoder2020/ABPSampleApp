@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AbpSampleApp.AccessManagment.Domain\AbpSampleApp.AccessManagment.Domain.csproj" />
     <ProjectReference Include="..\AbpSampleApp.AccessManagment.Application.Contracts\AbpSampleApp.AccessManagment.Application.Contracts.csproj" />
+    <ProjectReference Include="..\AbpSampleApp.AccessManagment.EntityFrameworkCore\AbpSampleApp.AccessManagment.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>
