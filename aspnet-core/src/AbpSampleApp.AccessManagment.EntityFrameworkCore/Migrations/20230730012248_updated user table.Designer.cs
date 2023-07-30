@@ -3,6 +3,7 @@ using System;
 using AbpSampleApp.AccessManagment.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace AbpSampleApp.AccessManagment.Migrations
 {
     [DbContext(typeof(AccessManagmentDbContext))]
-    partial class AccessManagmentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230730012248_updated user table")]
+    partial class updatedusertable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,8 @@
-﻿using Volo.Abp.Account;
+﻿using AbpSampleApp.AccessManagment.ExtendedService;
+using Castle.MicroKernel.Registration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -27,5 +31,8 @@ public class AccessManagmentApplicationModule : AbpModule
         {
             options.AddMaps<AccessManagmentApplicationModule>();
         });
+        //context.Services.AddDefaultRepository(typeof(Volo.Abp.Identity.IdentityUser), typeof(MyEfCoreIdentityUserRepository),
+        //replaceExisting: true);
+
     }
 }

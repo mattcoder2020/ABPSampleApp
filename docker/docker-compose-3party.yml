@@ -1,0 +1,28 @@
+version: "3.0"
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: AccessManagementDB
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: 1234
+    ports:
+      - 3306:3306
+    networks:
+      - springboot-network
+    
+
+networks:
+  springboot-network:
+    #name: my-network
+    external: true
+
+volumes:
+  mysql-data:
+
+  
+

@@ -44,30 +44,39 @@ public static class AccessManagmentModuleExtensionConfigurator
          * with a high level, easy to use API.
          *
          * Example: Add a new property to the user entity of the identity module
-
-           ObjectExtensionManager.Instance.Modules()
+           * See the documentation for more:
+         * https://docs.abp.io/en/abp/latest/Module-Entity-Extensions
+         */
+        ObjectExtensionManager.Instance.Modules()
               .ConfigureIdentity(identity =>
               {
                   identity.ConfigureUser(user =>
                   {
                       user.AddOrUpdateProperty<string>( //property type: string
-                          "SocialSecurityNumber", //property name
+                          User.UserConsts.WechatOpenIdPropertyName, //property name
                           property =>
                           {
                               //validation rules
-                              property.Attributes.Add(new RequiredAttribute());
-                              property.Attributes.Add(new StringLengthAttribute(64) {MinimumLength = 4});
+                              //property.Attributes.Add(new RequiredAttribute());
+                              property.Attributes.Add(new StringLengthAttribute(User.UserConsts.MaxWechatOpenIdLength) );
                               
-                              property.Configuration[IdentityModuleExtensionConsts.ConfigurationNames.AllowUserToEdit] = true;
 
                               //...other configurations for this property
                           }
                       );
+                      user.AddOrUpdateProperty<string>( //property type: string
+                         User.UserConsts.AliasPropertyName, //property name
+                         property =>
+                         {
+                             //validation rules
+                             //property.Attributes.Add(new RequiredAttribute());
+                             property.Attributes.Add(new StringLengthAttribute(User.UserConsts.MaxAliasLength) );
+
+                         }
+                     );
                   });
               });
 
-         * See the documentation for more:
-         * https://docs.abp.io/en/abp/latest/Module-Entity-Extensions
-         */
+      
     }
 }
