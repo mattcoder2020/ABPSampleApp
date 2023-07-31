@@ -42,15 +42,11 @@ namespace AbpSampleApp.AccessManagment.ExtendedService
 
         public async Task<List<IdentityUser>> FindByDateRange(DateTime from, DateTime to)
         {
-            List<IdentityUser> users =  await UserRepository.f.GetListAsync(filter: "CreationTime>=" + from.Date + " and CreationTime<=" + to.Date );
+            List<IdentityUser> users =  await UserRepository.FindByCreationDateRange(from, to );
             return users;
         }
 
-        public async Task<List<IdentityUser>> FindByName(string name)
-        {
-            List<IdentityUser> users = await UserRepository.FindByCreationDateRange("");
-            return users;
-        }
+       
 
     }
 

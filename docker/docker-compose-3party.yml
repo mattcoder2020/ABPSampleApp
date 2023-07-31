@@ -13,11 +13,11 @@ services:
     ports:
       - 3306:3306
     networks:
-      - springboot-network
+      - Abp-network
     
 
 networks:
-  springboot-network:
+  Abp-network:
     #name: my-network
     external: true
 

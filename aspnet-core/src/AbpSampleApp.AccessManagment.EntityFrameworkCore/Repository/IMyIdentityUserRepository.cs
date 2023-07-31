@@ -9,6 +9,6 @@ namespace AbpSampleApp.AccessManagment.EntityFrameworkCore.Repository
 {
     public interface IMyIdentityUserRepository:IIdentityUserRepository
     {
-        public Task<List<IdentityUser>> FindByCreationDateRange(string email);
+        Task<List<IdentityUser>> FindByCreationDateRange(DateTime from, DateTime to);
     }
 }
