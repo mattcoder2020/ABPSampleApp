@@ -16,7 +16,7 @@ function configureRoutes(routesService: RoutesService) {
         layout: eLayoutType.application,
       },
       {
-        path: '/stores',
+        path: '/allstores',
         name: '::Menu:stores',
         iconClass: 'fas fa-store',
         order: 2,
@@ -25,8 +25,8 @@ function configureRoutes(routesService: RoutesService) {
       {
         path: '/storelist',
         name: '::Menu:storelist',
-        iconClass: 'fas fa-store',
         parentName: '::Menu:stores',
+        iconClass: 'fas fa-store',
         layout: eLayoutType.application,
       }
     ]);

@@ -25,6 +25,7 @@ namespace AbpSampleApp.AccessManagment.Dto
         [StringLength (20)]
         public string Phone { get; set; }
 
+        [Required]
         public StoreStatus Status { get; set; }
 
         public DateTime CreationDate { get; set; }
