@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AbpSampleApp.AccessManagment.AggregateRoots;
+using AbpSampleApp.AccessManagment.Dto;
+using AutoMapper;
 
 namespace AbpSampleApp.AccessManagment;
 
@@ -9,5 +11,7 @@ public class AccessManagmentApplicationAutoMapperProfile : Profile
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
+        CreateMap<Store, StoreDto>();
+        CreateMap<CreateStoreDto, Store>();
     }
 }

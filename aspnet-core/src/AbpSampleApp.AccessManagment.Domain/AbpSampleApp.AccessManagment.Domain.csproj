@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AbpSampleApp.AccessManagment.Application.Contracts\AbpSampleApp.AccessManagment.Application.Contracts.csproj" />
     <ProjectReference Include="..\AbpSampleApp.AccessManagment.Domain.Shared\AbpSampleApp.AccessManagment.Domain.Shared.csproj" />
   </ItemGroup>
 
