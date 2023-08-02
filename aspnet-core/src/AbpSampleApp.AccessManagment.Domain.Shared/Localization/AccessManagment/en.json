@@ -1,8 +1,26 @@
 {
-  "culture": "en",
-  "texts": {
+  "Culture": "en",
+  "Texts": {
     "Menu:Home": "Home",
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+    "Menu:stores": "Stores",
+    "Menu:storelist": "View Stores",
+    "Actions": "Actions",
+    "Close": "Close",
+    "Delete": "Delete",
+    "Edit": "Edit",
+
+    "storeid": "Store Id",
+    "storestatus": "Operation Status",
+    "Name": "Name",
+    "fullname": "Full Name",
+    "Price": "Price",
+    "CreationTime": "Creation time",
+    "AreYouSure": "Are you sure?",
+    "AreYouSureToDelete": "Are you sure you want to delete this item?",
+    "Enum:StoreStatus.0": "Opening",
+    "Enum:StoreStatus.1": "Closed"
   }
 }
+

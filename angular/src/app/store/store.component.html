@@ -1,1 +1,30 @@
-<p>store works!</p>
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col col-md-6">
+        <h5 class="card-title">
+          {{ '::Menu:stores' | abpLocalization }}
+        </h5>
+      </div>
+      <div class="text-end col col-md-6"></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <ngx-datatable [rows]="stores.items" [count]="stores.totalCount" [list]="list" default>
+      <ngx-datatable-column [name]="'::storeid' | abpLocalization" prop="id"></ngx-datatable-column>
+      <ngx-datatable-column [name]="'::storestatus' | abpLocalization" prop="status">
+
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ '::Enum:StoreStatus.' + row.status | abpLocalization }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [name]="'::name' | abpLocalization" prop="name">    </ngx-datatable-column>
+      <ngx-datatable-column [name]="'::fullname' | abpLocalization" prop="fullname">  </ngx-datatable-column>
+      <ngx-datatable-column [name]="'::Address' | abpLocalization" prop="address">  </ngx-datatable-column>
+      <ngx-datatable-column [name]="'::phone' | abpLocalization" prop="phone">  </ngx-datatable-column>
+      <ngx-datatable-column [name]="'::creationDate' | abpLocalization" prop="creationDate">  </ngx-datatable-column>
+
+    </ngx-datatable>
+  </div>
+</div>
+

@@ -17,9 +17,16 @@ function configureRoutes(routesService: RoutesService) {
       },
       {
         path: '/stores',
-        name: '::Menu:Stores',
+        name: '::Menu:stores',
         iconClass: 'fas fa-store',
         order: 2,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/storelist',
+        name: '::Menu:storelist',
+        iconClass: 'fas fa-store',
+        parentName: '::Menu:stores',
         layout: eLayoutType.application,
       }
     ]);

@@ -40,4 +40,5 @@ import { AbpOAuthModule } from '@abp/ng.oauth';
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}

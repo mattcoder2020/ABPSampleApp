@@ -1,8 +1,29 @@
 {
-    "culture": "zh-Hans",
-    "texts": {
-      "Menu:Home": "首页",
-      "Welcome": "欢迎",
-      "LongWelcomeMessage": "欢迎来到该应用程序. 这是一个基于ABP框架的启动项目. 有关更多信息, 请访问 abp.io."
-    }
+  "culture": "zh-Hans",
+  "texts": {
+    "Menu:Home": "首页",
+    "Welcome": "欢迎",
+    "LongWelcomeMessage": "欢迎来到该应用程序. 这是一个基于ABP框架的启动项目. 有关更多信息, 请访问 abp.io.",
+
+    "Menu:stores": "門店管理",
+    "Menu:storelist": "所有門店",
+    "Actions": "操作",
+    "Close": "關閉",
+    "Delete": "刪除",
+    "Edit": "編輯",
+
+    "storeid": "門店編碼",
+    "storestatus": "狀態",
+    "name": "商戶簡稱",
+    "fullname": "商戶全稱",
+    "address": "地址",
+    "phone": "電話",
+    "Price": "Price",
+    "CreationDate": "創建日期",
+    "AreYouSure": "Are you sure?",
+    "AreYouSureToDelete": "Are you sure you want to delete this item?",
+    "Enum:StoreStatus.0": "營業中",
+    "Enum:StoreStatus.1": "已關閉"
   }
+}
+
