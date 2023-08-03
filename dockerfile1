@@ -1,0 +1,44 @@
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:6.7 AS build
+WORKDIR /src
+COPY ./ .
+#COPY ["./aspnet-core/src/EventAPI.csproj", "EventAPI/"]
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.Domain.Shared/AbpSampleApp.AccessManagment.Domain.Shared.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.HttpApi/AbpSampleApp.AccessManagment.HttpApi.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.Application.Contracts/AbpSampleApp.AccessManagment.Application.Contracts.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.HttpApi.Client/AbpSampleApp.AccessManagment.HttpApi.Client.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.Application/AbpSampleApp.AccessManagment.Application.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.Domain/AbpSampleApp.AccessManagment.Domain.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.DbMigrator/AbpSampleApp.AccessManagment.DbMigrator.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.EntityFrameworkCore/AbpSampleApp.AccessManagment.EntityFrameworkCore.csproj"
+RUN dotnet restore "./aspnet-core/src/AbpSampleApp.AccessManagment.HttpApi.Host/AbpSampleApp.AccessManagment.HttpApi.Host.csproj"
+
+WORKDIR "/aspnet-core/src/"
+RUN dotnet build "AbpSampleApp.AccessManagment.Domain.Shared/AbpSampleApp.AccessManagment.Domain.Shared.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.HttpApi/AbpSampleApp.AccessManagment.HttpApi.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.Application.Contracts/AbpSampleApp.AccessManagment.Application.Contracts.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.HttpApi.Client/AbpSampleApp.AccessManagment.HttpApi.Client.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.Application/AbpSampleApp.AccessManagment.Application.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.Domain/AbpSampleApp.AccessManagment.Domain.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.DbMigrator/AbpSampleApp.AccessManagment.DbMigrator.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.EntityFrameworkCore/AbpSampleApp.AccessManagment.EntityFrameworkCore.csproj" -c Release -o /app/build
+RUN dotnet build "AbpSampleApp.AccessManagment.HttpApi.Host/AbpSampleApp.AccessManagment.HttpApi.Host.csproj" -c Release -o /app/build
+# Install Entity Framework Core CLI tools
+#RUN dotnet tool install --global dotnet-ef --version 7.0.0
+#ENV PATH="${PATH}:/root/.dotnet/tools"
+# Run the add-migration command
+#RUN dotnet ef migrations add InitialCreate -p EventAPI.csproj -o Data/Migrations
+
+FROM build AS publish
+RUN dotnet publish "EventAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "EventAPI.dll"]
