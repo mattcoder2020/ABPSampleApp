@@ -47,6 +47,13 @@ export class StoreComponent implements OnInit{
       this.isModalOpen = true;
     });
   }
+
+  suspendStore(id: string) {
+    this.storeService.suspend(id).subscribe((store) => {
+      this.selectedStore= store;
+     
+    });
+  }
   deleteStore(id: string) {
     this.confirmation.warn('::AreYouSureToDelete', 'AbpAccount::AreYouSure').subscribe((status) => {
       if (status === Confirmation.Status.confirm) {

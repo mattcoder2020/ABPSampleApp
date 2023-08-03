@@ -2,6 +2,7 @@ import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
 import type { CreateStoreDto, StoreDto } from '../dto/models';
+import { StoreStatus } from '@proxy/enums';
 
 @Injectable({
   providedIn: 'root',
@@ -52,5 +53,27 @@ export class StoreService {
     },
     { apiName: this.apiName,...config });
 
+  suspend = (id: string, config?: Partial<Rest.Config>) =>
+    {
+      let input: CreateStoreDto;
+      let temp: StoreDto;
+      this.get(id).subscribe((store) => temp = store);
+      input = this.covertStoreDto(input);
+      input.status = StoreStatus.Closed;
+      return this.update(id, input, config);
+    };
+
+  covertStoreDto = (storedto: StoreDto ) =>
+  {
+       let dto:CreateStoreDto;
+       dto.address = storedto.address;
+       dto.creationDate = storedto.creationDate;
+       dto.fullName = storedto.fullName;
+       dto.name = storedto.name;
+       dto.phone = storedto.phone
+       dto.status = storedto.status;
+       return dto;
+
+  };
   constructor(private restService: RestService) {}
 }

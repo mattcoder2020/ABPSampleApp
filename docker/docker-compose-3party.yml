@@ -1,6 +1,16 @@
 version: "3.0"
 
 services:
+  adpsampleapp:
+    image: abpsampleapp
+    ports:
+      - "4200:4200"
+      - "44357:44357"
+    networks:
+      - Abp-network
+    depends_on:
+      - mysql
+
   mysql:
     image: mysql:5.7
     volumes:
