@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '@proxy/application-services';
 import { ListService, PagedResultDto } from '@abp/ng.core';
-import { StoreDto } from '@proxy/dto';
+import { StoreDto, StoreQueryDto } from '@proxy/dto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared'; 
 import { NgbDateNativeAdapter, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +21,7 @@ export class StoreComponent implements OnInit{
   // add bookTypes as a list of BookType enum members
   StatusTypes = storeStatusOptions;
   selectedStore = {} as StoreDto;
+  queryDto = {} as StoreQueryDto;
 
 
   isModalOpen = false;
@@ -94,6 +95,17 @@ export class StoreComponent implements OnInit{
     this.list.get();
     });
    
+  }
+
+  Query(){
+    const request = this.storeService.query(this.queryDto);
+    request.subscribe((data) => {
+      this.stores = data;
+    });
+  }
+
+  ResetQuery(){
+    this.queryDto = {} as StoreQueryDto;
   }
 }
 

@@ -19,24 +19,24 @@
           <label>创建日期</label>
         </div>
         <div class="col-md-2">
-          <input #datepicker="ngbDatepicker" class="form-control" id="creationstart" 
+          <input [(ngModel)] ="queryDto.creationDate" #datepicker="ngbDatepicker" class="form-control" id="creationstart" 
               ngbDatepicker (click)="datepicker.toggle()" placeholder="请输入日期"/> 
         </div>
         <div class="col-md-1">
           <label>商户名称</label>
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="请输入商户号">
+          <input [(ngModel)] ="queryDto.name"  type="text" class="form-control" placeholder="请输入商户号">
         </div>
         <div class="col-md-1">
           <label>门店编码</label>
         </div>
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="请输入门店编码">
+          <input [(ngModel)] ="queryDto.id" type="text" class="form-control" placeholder="请输入门店编码">
         </div>
         <div class="col-md-2">
-          <button class="btn btn-primary btn-sm mr-2">查找</button>
-          <button class="btn btn-secondary btn-sm">重置</button>
+          <button class="btn btn-primary btn-sm mr-2" (click)="Query()">查找</button>
+          <button class="btn btn-secondary btn-sm" (click)="ResetQuery()">重置</button>
         </div>
         
       </div>

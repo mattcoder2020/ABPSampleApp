@@ -19,3 +19,9 @@ export interface StoreDto extends AuditedEntityDto<string> {
   status: StoreStatus;
   creationDate?: string;
 }
+
+export interface StoreQueryDto {
+  id?: string;
+  name?: string;
+  creationDate?: string;
+}

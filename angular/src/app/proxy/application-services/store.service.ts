@@ -1,7 +1,7 @@
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { CreateStoreDto, StoreDto } from '../dto/models';
+import type { CreateStoreDto, StoreDto, StoreQueryDto } from '../dto/models';
 import { StoreStatus } from '@proxy/enums';
 
 @Injectable({
@@ -76,5 +76,16 @@ export class StoreService {
        return dto;
 
   };
+
+  query = (queryDto : StoreQueryDto, config?: Partial<Rest.Config>) => {
+    return this.restService.request<any, PagedResultDto<StoreDto>>({
+      method: 'POST',
+      url: '/api/app/store/query-by-filtration',
+      body: queryDto,
+    },
+    { apiName: this.apiName,...config });
+  }
+
+    
   constructor(private restService: RestService) {}
 }
