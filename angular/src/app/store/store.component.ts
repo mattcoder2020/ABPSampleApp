@@ -7,6 +7,7 @@ import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
 import { NgbDateNativeAdapter, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { storeStatusOptions } from '@proxy/enums';
 
+
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
@@ -49,11 +50,16 @@ export class StoreComponent implements OnInit{
   }
 
   suspendStore(id: string) {
-    this.storeService.suspend(id).subscribe((store) => {
-      this.selectedStore= store;
-     
+    this.storeService.get(id).subscribe((store) => {
+      this.selectedStore= store;})
+      this.selectedStore.status = 1; 
+
+    const request = this.storeService.update(this.selectedStore.id, this.storeService.covertStoreDto(this.selectedStore))
+    request.subscribe(() => {
+        this.list.get();
     });
   }
+
   deleteStore(id: string) {
     this.confirmation.warn('::AreYouSureToDelete', 'AbpAccount::AreYouSure').subscribe((status) => {
       if (status === Confirmation.Status.confirm) {

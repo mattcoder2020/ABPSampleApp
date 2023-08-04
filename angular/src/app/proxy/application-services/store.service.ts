@@ -56,16 +56,17 @@ export class StoreService {
   suspend = (id: string, config?: Partial<Rest.Config>) =>
     {
       let input: CreateStoreDto;
-      let temp: StoreDto;
+      let temp = {} as StoreDto;
+      
       this.get(id).subscribe((store) => temp = store);
-      input = this.covertStoreDto(input);
+      input = this.covertStoreDto(temp);
       input.status = StoreStatus.Closed;
       return this.update(id, input, config);
     };
 
   covertStoreDto = (storedto: StoreDto ) =>
   {
-       let dto:CreateStoreDto;
+       let dto= {} as CreateStoreDto;
        dto.address = storedto.address;
        dto.creationDate = storedto.creationDate;
        dto.fullName = storedto.fullName;
