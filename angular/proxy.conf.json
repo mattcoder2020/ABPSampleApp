@@ -1,0 +1,11 @@
+{
+     
+    "/backend/*": {
+      "target": "http://host.docker.internal:44357",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": { "^/api": "http://host.docker.internal:44357/api" }
+    }
+  }
+  
